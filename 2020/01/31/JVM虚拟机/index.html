@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,12 +79,15 @@
 
 
 
+<meta name="description" content="JVM虚拟机内存区域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ceshi">
-<meta property="og:url" content="http://yoursite.com/2020/01/30/ceshi/index.html">
+<meta property="og:title" content="JVM虚拟机">
+<meta property="og:url" content="http://yoursite.com/2020/01/31/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="article:published_time" content="2020-01-30T09:46:34.000Z">
-<meta property="article:modified_time" content="2020-01-30T09:46:34.673Z">
+<meta property="og:description" content="JVM虚拟机内存区域">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-31T10:58:56.087Z">
+<meta property="article:modified_time" content="2020-01-31T12:19:07.461Z">
 <meta property="article:author" content="chosen">
 <meta name="twitter:card" content="summary">
 
@@ -102,7 +105,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -116,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/30/ceshi/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/31/JVM虚拟机/"/>
 
 
 
 
 
-  <title>ceshi | Hexo</title>
+  <title>JVM虚拟机 | Hexo</title>
   
 
 
@@ -134,7 +137,7 @@
 
 <meta name="generator" content="Hexo 4.2.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -182,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -192,7 +195,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
@@ -202,7 +205,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -212,7 +215,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -222,7 +225,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -235,7 +238,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
-            搜索
+            Search
           </a>
         </li>
       
@@ -255,7 +258,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -293,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/30/ceshi/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/31/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="chosen">
@@ -310,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ceshi</h1>
+          <h1 class="post-title" itemprop="name headline">JVM虚拟机</h1>
         
 
         <div class="post-meta">
@@ -320,10 +323,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-30T17:46:34+08:00">
-                2020-01-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-31T18:58:56+08:00">
+                2020-01-31
               </time>
             
 
@@ -365,7 +368,54 @@
       
 
       
-        
+        <h1 id="JVM虚拟机"><a href="#JVM虚拟机" class="headerlink" title="JVM虚拟机"></a>JVM虚拟机</h1><h2 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h2><a id="more"></a>
+<h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><ul>
+<li><p>程序计数器<br>程序计数器是一块较小的内存空间，是线程私有的，可以看作是线程执行字节码时的行号指示器，字节码解释器工作时就是通过改变这个计数器的值来选取下一条执行的指令<br>存在的意义:<br>CPU工作时需要来回切换线程，这个时候需要知道线程当前执行的行数，以免执行错乱</p>
+</li>
+<li><p>java虚拟机栈<br>java虚拟机栈同程序计数器一样也是线程私有的，它与线程的生命周期相同相同，它描述的是方法执行的内存模型，当执行方法的同时会创建一个栈帧，栈帧包括了局部表量表，操作数栈，动态链接以及方法出口等信息。方法从执行到结束的过程就是栈帧从入栈到出栈的过程</p>
+</li>
+<li><p>java堆<br>java堆存放的是对象的实例，是垃圾收集主要工作的区域</p>
+</li>
+<li><p>方法区<br>方法区主要存放的是类的信息，常量，静态变量以及常量池等</p>
+</li>
+<li><p>常量池<br>常量池中主要保存的是运行期产生的字面量和符号引用<br>intern方法返回的是常量池中某个字符串，如果改字符串不存在则创建后返回</p>
+</li>
+<li><p>直接内存<br>通过NIO类，引用了一种基于通道与缓冲区的I/O方式，可以通过native函数库直接分配堆外内存</p>
+</li>
+<li><p>本地方法栈<br>跟java虚拟机栈类似，区别是它服务于native方法</p>
+</li>
+</ul>
+<h3 id="对象内存布局"><a href="#对象内存布局" class="headerlink" title="对象内存布局"></a>对象内存布局</h3><h4 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h4><ul>
+<li>mark word<br>gc年龄，锁标记，偏向锁id，哈希值，线程id</li>
+<li>类型指针<br>表示这个对象是哪个类的实例</li>
+</ul>
+<h4 id="实例数据"><a href="#实例数据" class="headerlink" title="实例数据"></a>实例数据</h4><p>存放的是编码时的字段等信息</p>
+<h4 id="对齐填充"><a href="#对齐填充" class="headerlink" title="对齐填充"></a>对齐填充</h4><p>8的整数倍，起着占位符的作用</p>
+<h2 id="内存分配与回收"><a href="#内存分配与回收" class="headerlink" title="内存分配与回收"></a>内存分配与回收</h2><h3 id="内存分配原则"><a href="#内存分配原则" class="headerlink" title="内存分配原则"></a>内存分配原则</h3><ul>
+<li>新创建的对象分配到新生代</li>
+<li>大对象直接进入老年代</li>
+<li>随着gc年龄增长进入老年代</li>
+<li>动态gc年龄判断</li>
+<li>空间分配担保</li>
+</ul>
+<h3 id="判断对象‘已死’？"><a href="#判断对象‘已死’？" class="headerlink" title="判断对象‘已死’？"></a>判断对象‘已死’？</h3><p>可达性分析算法</p>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3><p>分代收集，标记-清除，标记-整理，复制算法</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>serial垃圾收集器，parNew收集器，cms收集器等</p>
+<h2 id="JVM性能监控"><a href="#JVM性能监控" class="headerlink" title="JVM性能监控"></a>JVM性能监控</h2><h3 id="JVM命令行指令"><a href="#JVM命令行指令" class="headerlink" title="JVM命令行指令"></a>JVM命令行指令</h3><ul>
+<li>jps：虚拟机进程状况工具</li>
+<li>jstat：虚拟机统计信息监视工具</li>
+<li>jstack：堆栈跟踪工具</li>
+</ul>
+<h3 id="JVM可视化工具"><a href="#JVM可视化工具" class="headerlink" title="JVM可视化工具"></a>JVM可视化工具</h3><p>jconsole,visualVM</p>
+<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>将class文件加载到内存，并对数据进行校验，解析，初始化，最终形成可以被虚拟机直接使用的java对象的过程，叫做类加载机制</p>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><ul>
+<li>启动类加载器</li>
+<li>拓展类加载器</li>
+<li>应用程序类加载器</li>
+</ul>
+<h3 id="双亲委派原则"><a href="#双亲委派原则" class="headerlink" title="双亲委派原则"></a>双亲委派原则</h3><p>当类加载器收到一个类加载的请求时，将请求传递给父类的加载器，每一级加载器都是如此，直到最顶层的类加载器收到这个请求，只有当父加载器无法加载时，子加载器才会去加载</p>
+<h3 id="破坏双亲委派原则"><a href="#破坏双亲委派原则" class="headerlink" title="破坏双亲委派原则"></a>破坏双亲委派原则</h3><p>热加载</p>
+
       
     </div>
     
@@ -385,26 +435,6 @@
       
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2020/01/30/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/30/manman/" rel="prev" title="'manman'">
-                'manman' <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
@@ -453,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -469,8 +508,8 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -497,6 +536,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM虚拟机"><span class="nav-number">1.</span> <span class="nav-text">JVM虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存区域"><span class="nav-number">1.1.</span> <span class="nav-text">内存区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.1.1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象内存布局"><span class="nav-number">1.1.2.</span> <span class="nav-text">对象内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象头"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">对象头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例数据"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">实例数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐填充"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">对齐填充</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配与回收"><span class="nav-number">1.2.</span> <span class="nav-text">内存分配与回收</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分配原则"><span class="nav-number">1.2.1.</span> <span class="nav-text">内存分配原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断对象‘已死’？"><span class="nav-number">1.2.2.</span> <span class="nav-text">判断对象‘已死’？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">1.2.3.</span> <span class="nav-text">垃圾收集算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">1.2.4.</span> <span class="nav-text">垃圾收集器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM性能监控"><span class="nav-number">1.3.</span> <span class="nav-text">JVM性能监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM命令行指令"><span class="nav-number">1.3.1.</span> <span class="nav-text">JVM命令行指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM可视化工具"><span class="nav-number">1.3.2.</span> <span class="nav-text">JVM可视化工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载机制"><span class="nav-number">1.4.</span> <span class="nav-text">类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载器"><span class="nav-number">1.4.2.</span> <span class="nav-text">类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派原则"><span class="nav-number">1.4.3.</span> <span class="nav-text">双亲委派原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#破坏双亲委派原则"><span class="nav-number">1.4.4.</span> <span class="nav-text">破坏双亲委派原则</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -520,7 +575,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -528,7 +583,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 <div>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

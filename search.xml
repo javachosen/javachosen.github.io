@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>1111</title>
-    <url>/2020/01/30/1111/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>&#39;xiaomanman&#39;</title>
-    <url>/2020/01/30/xiaomanman/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>&#39;manman&#39;</title>
-    <url>/2020/01/30/manman/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>ceshi</title>
-    <url>/2020/01/30/ceshi/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/01/30/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    <title>JVM虚拟机</title>
+    <url>/2020/01/31/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <content><![CDATA[<h1 id="JVM虚拟机"><a href="#JVM虚拟机" class="headerlink" title="JVM虚拟机"></a>JVM虚拟机</h1><h2 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h2><a id="more"></a>
+<h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><ul>
+<li><p>程序计数器<br>程序计数器是一块较小的内存空间，是线程私有的，可以看作是线程执行字节码时的行号指示器，字节码解释器工作时就是通过改变这个计数器的值来选取下一条执行的指令<br>存在的意义:<br>CPU工作时需要来回切换线程，这个时候需要知道线程当前执行的行数，以免执行错乱</p>
+</li>
+<li><p>java虚拟机栈<br>java虚拟机栈同程序计数器一样也是线程私有的，它与线程的生命周期相同相同，它描述的是方法执行的内存模型，当执行方法的同时会创建一个栈帧，栈帧包括了局部表量表，操作数栈，动态链接以及方法出口等信息。方法从执行到结束的过程就是栈帧从入栈到出栈的过程</p>
+</li>
+<li><p>java堆<br>java堆存放的是对象的实例，是垃圾收集主要工作的区域</p>
+</li>
+<li><p>方法区<br>方法区主要存放的是类的信息，常量，静态变量以及常量池等</p>
+</li>
+<li><p>常量池<br>常量池中主要保存的是运行期产生的字面量和符号引用<br>intern方法返回的是常量池中某个字符串，如果改字符串不存在则创建后返回</p>
+</li>
+<li><p>直接内存<br>通过NIO类，引用了一种基于通道与缓冲区的I/O方式，可以通过native函数库直接分配堆外内存</p>
+</li>
+<li><p>本地方法栈<br>跟java虚拟机栈类似，区别是它服务于native方法</p>
+</li>
+</ul>
+<h3 id="对象内存布局"><a href="#对象内存布局" class="headerlink" title="对象内存布局"></a>对象内存布局</h3><h4 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h4><ul>
+<li>mark word<br>gc年龄，锁标记，偏向锁id，哈希值，线程id</li>
+<li>类型指针<br>表示这个对象是哪个类的实例</li>
+</ul>
+<h4 id="实例数据"><a href="#实例数据" class="headerlink" title="实例数据"></a>实例数据</h4><p>存放的是编码时的字段等信息</p>
+<h4 id="对齐填充"><a href="#对齐填充" class="headerlink" title="对齐填充"></a>对齐填充</h4><p>8的整数倍，起着占位符的作用</p>
+<h2 id="内存分配与回收"><a href="#内存分配与回收" class="headerlink" title="内存分配与回收"></a>内存分配与回收</h2><h3 id="内存分配原则"><a href="#内存分配原则" class="headerlink" title="内存分配原则"></a>内存分配原则</h3><ul>
+<li>新创建的对象分配到新生代</li>
+<li>大对象直接进入老年代</li>
+<li>随着gc年龄增长进入老年代</li>
+<li>动态gc年龄判断</li>
+<li>空间分配担保</li>
+</ul>
+<h3 id="判断对象‘已死’？"><a href="#判断对象‘已死’？" class="headerlink" title="判断对象‘已死’？"></a>判断对象‘已死’？</h3><p>可达性分析算法</p>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h3><p>分代收集，标记-清除，标记-整理，复制算法</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>serial垃圾收集器，parNew收集器，cms收集器等</p>
+<h2 id="JVM性能监控"><a href="#JVM性能监控" class="headerlink" title="JVM性能监控"></a>JVM性能监控</h2><h3 id="JVM命令行指令"><a href="#JVM命令行指令" class="headerlink" title="JVM命令行指令"></a>JVM命令行指令</h3><ul>
+<li>jps：虚拟机进程状况工具</li>
+<li>jstat：虚拟机统计信息监视工具</li>
+<li>jstack：堆栈跟踪工具</li>
+</ul>
+<h3 id="JVM可视化工具"><a href="#JVM可视化工具" class="headerlink" title="JVM可视化工具"></a>JVM可视化工具</h3><p>jconsole,visualVM</p>
+<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>将class文件加载到内存，并对数据进行校验，解析，初始化，最终形成可以被虚拟机直接使用的java对象的过程，叫做类加载机制</p>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><ul>
+<li>启动类加载器</li>
+<li>拓展类加载器</li>
+<li>应用程序类加载器</li>
+</ul>
+<h3 id="双亲委派原则"><a href="#双亲委派原则" class="headerlink" title="双亲委派原则"></a>双亲委派原则</h3><p>当类加载器收到一个类加载的请求时，将请求传递给父类的加载器，每一级加载器都是如此，直到最顶层的类加载器收到这个请求，只有当父加载器无法加载时，子加载器才会去加载</p>
+<h3 id="破坏双亲委派原则"><a href="#破坏双亲委派原则" class="headerlink" title="破坏双亲委派原则"></a>破坏双亲委派原则</h3><p>热加载</p>
 ]]></content>
   </entry>
 </search>
