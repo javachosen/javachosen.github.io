@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JAVA设计模式</title>
+    <url>/2020/01/31/JAVA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="设计模式原则"><a href="#设计模式原则" class="headerlink" title="设计模式原则"></a>设计模式原则</h2><p>面向接口原则，开闭原则，单一职责原则</p>
+<a id="more"></a>
+
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>保证一个类只有一个实例，并提供一个访问他的全局的访问点</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>父类中编写一个创建对象的抽象方法，具体创建哪个对象由子类去实现</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>创建一个代理类，以控制对被代理类的访问</p>
+<h2 id="模板模式"><a href="#模板模式" class="headerlink" title="模板模式"></a>模板模式</h2><p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中</p>
+<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>动态的给类增加功能</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>以相同的方式调用一系列算法，目的是减少算法类与调用算法类之间的耦合</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>创建一个适配器，使得原本由于接口不兼容而不能一起工作的那些类可以一起工作</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>绑定对象之间一对多的关系，当被观察者发生改变时通知它依赖的对象</p>
+]]></content>
+  </entry>
+  <entry>
     <title>JVM虚拟机</title>
     <url>/2020/01/31/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
     <content><![CDATA[<h1 id="JVM虚拟机"><a href="#JVM虚拟机" class="headerlink" title="JVM虚拟机"></a>JVM虚拟机</h1><h2 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h2><a id="more"></a>
